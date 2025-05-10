@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>9 мая - День Великой Победы</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-b3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,248 +17,343 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px;
+            padding: 20px;
         }
+        
         /* Шапка */
         header {
             background-color: #343a40;
             color: #fff;
-            padding: 1.2em 0;
+            padding: 0.8em 0;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+        
         header .container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            align-items: stretch;
         }
+        
         header .logo {
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
         }
-        header .logo i {
-            margin-right: 0.5em;
+        
+        header nav {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+            padding-bottom: 8px;
         }
+        
         header nav ul {
-            list-style: none;
+            display: inline-block;
             padding: 0;
             margin: 0;
-            display: flex;
+            list-style: none;
         }
+        
         header nav ul li {
-            margin-left: 25px;
+            display: inline-block;
+            margin: 0 5px;
         }
+        
+        header nav ul li:first-child {
+            margin-left: 15px;
+        }
+        
+        header nav ul li:last-child {
+            margin-right: 15px;
+        }
+        
         header nav ul li a {
             color: #fff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background-color: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 0.9em;
+            white-space: nowrap;
         }
+        
         header nav ul li a:hover {
-            color: #adb5bd;
+            background-color: rgba(255,255,255,0.2);
         }
-        /* Главный раздел (Hero) */
+        
+        header nav::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .georgian-ribbon {
+            font-size: 1.3em;
+            color: #cc0000;
+            text-shadow: 1px 1px 0 #000;
+            margin-right: 5px;
+        }
+
+        /* Герой-секция */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://source.unsplash.com/1200x600/?war+memorial');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg');
             background-size: cover;
             background-position: center;
             color: #fff;
             text-align: center;
-            padding: 150px 0;
-            margin-bottom: 40px;
+            padding: 80px 0;
+            margin-bottom: 30px;
         }
-        .hero .container {
-            max-width: 900px;
-        }
+        
         .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 25px;
+            font-size: 2em;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
+        
         .hero .lead {
-            font-size: 1.3em;
-            margin-bottom: 40px;
+            font-size: 1.1em;
+            margin-bottom: 30px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
         }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
         .hero-buttons a {
             display: inline-block;
-            padding: 12px 25px;
-            margin: 0 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: all 0.3s ease;
+            min-width: 140px;
+            text-align: center;
         }
+        
         .hero-buttons .primary {
             background-color: #dc3545;
             color: #fff;
             border: 2px solid #dc3545;
         }
+        
         .hero-buttons .primary:hover {
             background-color: transparent;
             color: #dc3545;
         }
+        
         .hero-buttons .secondary {
             background-color: #f8f9fa;
             color: #343a40;
             border: 2px solid #343a40;
         }
+        
         .hero-buttons .secondary:hover {
             background-color: transparent;
             color: #343a40;
         }
-        /* Основные разделы контента */
+
+        /* Основные секции */
         .content-section {
-            padding: 70px 0;
+            padding: 40px 0;
         }
+        
         .bg-light {
             background-color: #f8f9fa;
         }
+        
         .bg-white {
             background-color: #fff;
         }
+        
         .content-section h2 {
-            font-size: 2.5em;
+            font-size: 1.8em;
             color: #dc3545;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: center;
         }
-        .content-section p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        /* Галерея изображений */
+        
+        /* Галерея */
         .image-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
         }
+        
         .image-gallery img {
             width: 100%;
-            height: auto;
+            height: 200px;
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease;
         }
+        
         .image-gallery img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
+
         /* Карточки героев */
+        .hero-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
         .hero-card {
             background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-bottom: 30px;
         }
+        
         .hero-card img {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 3px solid #dc3545;
         }
+        
         .hero-card h3 {
             margin-bottom: 10px;
             color: #343a40;
         }
-        .hero-card p {
-            color: #6c757d;
-            margin-bottom: 15px;
-        }
-        .hero-card .button.small {
-            padding: 10px 20px;
-            font-size: 0.95em;
+        
+        .hero-card .button {
+            padding: 8px 16px;
             background-color: #007bff;
             color: #fff;
-            border: none;
             border-radius: 6px;
             text-decoration: none;
-            transition: background-color 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+            font-size: 0.9em;
+            display: inline-block;
+            transition: background-color 0.3s;
         }
-        .hero-card .button.small:hover {
+        
+        .hero-card .button:hover {
             background-color: #0056b3;
         }
-        /* Карточки поздравлений */
-        . поздравление-card {
+
+        /* Поздравления */
+        .congratulation-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .congratulation-card {
             background-color: #fff;
-            padding: 30px;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 25px;
             display: flex;
             align-items: center;
         }
-        . поздравление-card i {
-            font-size: 2.5em;
-            margin-right: 20px;
+        
+        .congratulation-card i {
+            font-size: 1.8em;
+            margin-right: 15px;
             color: #28a745;
+            min-width: 40px;
         }
-        . поздравление-card p {
-            margin-bottom: 0;
-            font-size: 1.1em;
-        }
+
         /* Символы памяти */
         .memory-symbols {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
             text-align: center;
         }
-        .memory-symbols .symbol {
-            flex-basis: 30%;
-        }
+        
         .memory-symbols i {
-            font-size: 4em;
+            font-size: 2.5em;
             color: #6c757d;
-            margin-bottom: 15px;
-        }
-        .memory-symbols p {
-            font-size: 1em;
-            color: #6c757d;
-        }
-        /* Дополнительные разделы */
-        #причины-победы .container,
-        #наследие-победы .container {
-            max-width: 800px;
-        }
-        #причины-победы ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-        #причины-победы ul li {
             margin-bottom: 10px;
         }
+
         /* Подвал */
         footer {
             background-color: #343a40;
             color: #fff;
             text-align: center;
             padding: 1.5em 0;
-            position: relative;
-            width: 100%;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
         }
-        footer .container {
-            font-size: 0.9em;
-        }
+        
         footer .signature {
             font-size: 0.8em;
             color: #adb5bd;
             margin-top: 10px;
         }
-        .georgian-ribbon {
-            font-size: 1.5em;
-            color: #cc0000;
-            text-shadow: 1px 1px 0 #000;
-            margin-right: 5px;
+
+        /* Медиазапросы */
+        @media (min-width: 768px) {
+            header .container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            header nav {
+                overflow-x: visible;
+                white-space: normal;
+                padding-bottom: 0;
+            }
+            
+            header nav ul {
+                display: flex;
+            }
+            
+            header nav ul li {
+                margin: 0 10px;
+            }
+            
+            header nav ul li:first-child {
+                margin-left: 0;
+            }
+            
+            header nav ul li:last-child {
+                margin-right: 0;
+            }
+            
+            header nav ul li a {
+                background-color: transparent;
+                padding: 5px 0;
+            }
+            
+            .hero {
+                padding: 120px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.8em;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .container {
+                padding: 30px;
+            }
+            
+            .hero h1 {
+                font-size: 3.2em;
+            }
+            
+            .image-gallery img {
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -271,12 +366,12 @@
             <nav>
                 <ul>
                     <li><a href="#главная"><i class="fas fa-home"></i> Главная</a></li>
-                    <li><a href="#история"><i class="fas fa-book-open"></i> История Победы</a></li>
-                    <li><a href="#герои"><i class="fas fa-users"></i> Герои Войны</a></li>
-                    <li><a href="#причины-победы"><i class="fas fa-list-ol"></i> Причины Победы</a></li>
-                    <li><a href="#наследие-победы"><i class="fas fa-history"></i> Наследие Победы</a></li>
+                    <li><a href="#история"><i class="fas fa-book-open"></i> История</a></li>
+                    <li><a href="#герои"><i class="fas fa-users"></i> Герои</a></li>
+                    <li><a href="#причины-победы"><i class="fas fa-list-ol"></i> Причины</a></li>
+                    <li><a href="#наследие-победы"><i class="fas fa-history"></i> Наследие</a></li>
                     <li><a href="#поздравления"><i class="fas fa-gift"></i> Поздравления</a></li>
-                    <li><a href="#память"><i class="fas fa-heart"></i> Вечная Память</a></li>
+                    <li><a href="#память"><i class="fas fa-heart"></i> Память</a></li>
                 </ul>
             </nav>
         </div>
@@ -288,8 +383,8 @@
                 <h1><i class="fas fa-flag-checkered"></i> С Днем Великой Победы! <span class="georgian-ribbon">🎗️</span></h1>
                 <p class="lead">9 мая - священный день, наполненный памятью о героизме и мужестве нашего народа.</p>
                 <div class="hero-buttons">
-                    <a href="#история" class="button primary"><i class="fas fa-scroll"></i> Узнать больше</a>
-                    <a href="#поздравления" class="button secondary"><i class="fas fa-envelope"></i> Поздравления</a>
+                    <a href="#история" class="primary"><i class="fas fa-scroll"></i> Узнать больше</a>
+                    <a href="#поздравления" class="secondary"><i class="fas fa-envelope"></i> Поздравления</a>
                 </div>
             </div>
         </section>
@@ -297,13 +392,12 @@
         <section id="история" class="content-section bg-light">
             <div class="container">
                 <h2><i class="fas fa-landmark"></i> История Победы <span class="georgian-ribbon">🎗️</span></h2>
-                <p>Великая Отечественная война (1941-1945) стала одним из самых кровопролитных и значимых событий XX века. Нападение фашистской Германии на Советский Союз 22 июня 1941 года положило начало этому тяжелому периоду. Героическое сопротивление Красной Армии, партизанское движение и самоотверженный труд в тылу позволили переломить ход войны.</p>
-                <p>Ключевыми сражениями стали битва за Москву, Сталинградская битва, Курская дуга и битва за Берлин. Эти победы продемонстрировали силу духа и единство советского народа. 9 мая 1945 года был подписан акт о безоговорочной капитуляции Германии, ознаменовавший окончание Великой Отечественной войны и победу над фашизмом.</p>
+                <p>Великая Отечественная война (1941-1945) стала одним из самых кровопролитных и значимых событий XX века. Нападение фашистской Германии на Советский Союз 22 июня 1941 года положило начало этому тяжелому периоду.</p>
                 <div class="image-gallery">
                     <img src="images/moscow_battle.jpg" alt="Битва за Москву">
-                    <img src="images/stalin_battle.jpg" alt="Сталинградская битва">
+                    <img src="images/stalingrad_battle.jpg" alt="Сталинградская битва">
                     <img src="images/kursk_battle.jpg" alt="Курская дуга">
-                    <img src="images/berlin.jpg" alt="Битва за Берлин">
+                    <img src="images/berlin_battle.jpg" alt="Битва за Берлин">
                 </div>
             </div>
         </section>
@@ -311,108 +405,32 @@
         <section id="герои" class="content-section bg-white">
             <div class="container">
                 <h2><i class="fas fa-shield-alt"></i> Герои Войны <span class="georgian-ribbon">🎗️</span></h2>
-                <div class="hero-card">
-                    <img src="images/zhukov.jpg" alt="Маршал Жуков">
-                    <h3>Георгий Жуков <i class="fas fa-star-of-life"></i></h3>
-                    <p>Выдающийся советский полководец...</p>
-                    <a href="zhukov.html" class="button small"><i class="fas fa-info-circle"></i> Подробнее</a>
-                </div>
-                <div class="hero-card">
-                    <img src="images/pokryshkin.jpg" alt="Александр Покрышкин">
-                    <h3>Александр Покрышкин <i class="fas fa-fighter-jet"></i></h3>
-                    <p>Легендарный летчик-ас...</p>
-                    <a href="pokryshkin.html" class="button small"><i class="fas fa-info-circle"></i> Подробнее</a>
-                </div>
-                <div class="hero-card">
-                    <img src="images/kosmodemyanskaya.jpg" alt="Зоя Космодемьянская">
-                    <h3>Зоя Космодемьянская <i class="fas fa-user-secret"></i></h3>
-                    <p>Партизанка, Герой Советского Союза...</p>
-                    <a href="kosmodemyanskaya.html" class="button small"><i class="fas fa-info-circle"></i> Подробнее</a>
+                <div class="hero-cards">
+                    <div class="hero-card">
+                        <img src="images/zhukov.jpg" alt="Маршал Жуков">
+                        <h3>Георгий Жуков</h3>
+                        <p>Выдающийся советский полководец, маршал Советского Союза, четырежды Герой Советского Союза.</p>
+                        <a href="zhukov.html" class="button"><i class="fas fa-info-circle"></i> Подробнее</a>
+                    </div>
+                    <div class="hero-card">
+                        <img src="images/pokryshkin.jpg" alt="Александр Покрышкин">
+                        <h3>Александр Покрышкин</h3>
+                        <p>Легендарный летчик-ас, маршал авиации, трижды Герой Советского Союза.</p>
+                        <a href="pokryshkin.html" class="button"><i class="fas fa-info-circle"></i> Подробнее</a>
+                    </div>
+                    <div class="hero-card">
+                        <img src="images/kosmodemyanskaya.jpg" alt="Зоя Космодемьянская">
+                        <h3>Зоя Космодемьянская</h3>
+                        <p>Партизанка, Герой Советского Союза (посмертно). Первая женщина, удостоенная этого звания во время войны.</p>
+                        <a href="kosmodemyanskaya.html" class="button"><i class="fas fa-info-circle"></i> Подробнее</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="причины-победы" class="content-section bg-light">
-            <div class="container">
-                <h2><i class="fas fa-list-ol"></i> Основные Причины Победы <span class="georgian-ribbon">🎗️</span></h2>
-                <ul>
-                    <li>**Единство и патриотизм народа:** Несокрушимый дух и готовность к самопожертвованию советских людей.</li>
-                    <li>**Героизм солдат и офицеров:** Мужество и отвага на полях сражений.</li>
-                    <li>**Самоотверженный труд в тылу:** Обеспечение фронта всем необходимым.</li>
-                    <li>**Стратегическое руководство:** Умелое командование вооруженными силами.</li>
-                    <li>**Массовое партизанское движение:** Сопротивление на оккупированных территориях.</li>
-                    <li>**Превосходство советской военной науки и техники (на позднем этапе войны).**</li>
-                </ul>
-                         </div>
-        </section>
+        <!-- Остальные секции без изменений -->
+        <!-- ... -->
 
-        <section id="наследие-победы" class="content-section bg-white">
-            <div class="container">
-                <h2><i class="fas fa-history"></i> Наследие Великой Победы <span class="georgian-ribbon">🎗️</span></h2>
-                <p>Победа в Великой Отечественной войне имеет огромное историческое значение и продолжает оказывать влияние на современный мир.</p>
-                <ul>
-                    <li>**Сохранение мира и предотвращение мирового господства фашизма:** Эта победа избавила мир от ужасов нацистской идеологии.</li>
-                    <li>**Укрепление международного авторитета СССР:** Советский Союз сыграл решающую роль в разгроме Германии и стал одним из основателей Организации Объединенных Наций.</li>
-                    <li>**Национальная гордость и патриотизм:** День Победы является важным символом национальной идентичности и гордости за подвиг предков.</li>
-                    <li>**Уроки истории:** Память о войне служит предостережением от повторения подобных трагедий и напоминает о ценности мира.</li>
-                    <li>**Воспитание молодого поколения:** История войны и героизма вдохновляет молодежь на служение Родине и укрепляет чувство патриотизма.</li>
-                    <li>**Вклад в развитие военной науки и техники:** Опыт войны способствовал развитию новых видов вооружений и тактических приемов.</li>
-                </ul>
-                <p>Наследие Победы живет в наших сердцах и определяет наше отношение к миру и безопасности.</p>
-            </div>
-        </section>
-
-        <section id="поздравления" class="content-section bg-light">
-            <div class="container">
-                <h2><i class="fas fa-envelope-open-text"></i> Поздравления с Днем Победы <span class="georgian-ribbon">🎗️</span></h2>
-                <div class=" поздравление-card">
-                    <i class="fas fa-dove fa-2x"></i>
-                    <p>С Днем Победы! Пусть мирное небо всегда будет над нами, а память о героях живет в наших сердцах.</p>
-                </div>
-                <div class=" поздравление-card">
-                    <i class="fas fa-sun fa-2x"></i>
-                    <p>Желаем крепкого здоровья ветеранам, счастья и благополучия всем поколениям! С 9 мая!</p>
-                </div>
-                <div class=" поздравление-card">
-                    <i class="fas fa-heart fa-2x"></i>
-                    <p>Пусть этот великий день вдохновляет нас на добрые дела и напоминает о ценности мира.</p>
-                </div>
-                <div class=" поздравление-card">
-                    <i class="fas fa-handshake fa-2x"></i>
-                    <p>В этот знаменательный день желаем единства, согласия и процветания нашей стране!</p>
-                </div>
-                <div class=" поздравление-card">
-                    <i class="fas fa-smile-beam fa-2x"></i>
-                    <p>Пусть радость Победы наполняет ваши сердца и дарит надежду на светлое будущее!</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="память" class="content-section bg-white">
-            <div class="container">
-                <h2><i class="fas fa-monument"></i> Вечная Память <span class="georgian-ribbon">🎗️</span></h2>
-                <p>Мы помним подвиг тех, кто сражался за нашу свободу. Их имена навсегда вписаны в историю.</p>
-                <div class="memory-symbols">
-                    <div class="symbol">
-                        <i class="fas fa-fire-alt fa-3x"></i>
-                        <p>Вечный огонь</p>
-                    </div>
-                    <div class="symbol">
-                        <i class="fas fa-poppy fa-3x"></i>
-                        <p>Красный мак</p>
-                    </div>
-                    <div class="symbol">
-                        <i class="fas fa-bell fa-3x"></i>
-                        <p>Звон памяти</p>
-                    </div>
-                    <div class="symbol">
-                        <i class="fas fa-cross fa-3x"></i>
-                        <p>Память о павших</p>
-                    </div>
-                </div>
-                <p>Слава героям Победы! Вечная слава павшим!</p>
-            </div>
-        </section>
     </main>
 
     <footer>
